@@ -1,4 +1,4 @@
-(function () {
+var gameGenre = (function () {
   'use strict';
 
   const renderElement = (html) => {
@@ -10,6 +10,25 @@
   const clearScreen = () => {
     let screen = document.querySelector('.main');
     screen.innerHTML = '';
+  };
+
+  const welcomeScreen = function () {
+    clearScreen();
+    renderElement(`<section class="welcome">
+<div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+<button class="welcome__button"><span class="visually-hidden">Начать игру</span></button>
+<h2 class="welcome__rules-title">Правила игры</h2>
+<p class="welcome__text">Правила просты:</p>
+<ul class="welcome__rules-list">
+  <li>За 5 минут нужно ответить на все вопросы.</li>
+  <li>Можно допустить 3 ошибки.</li>
+</ul>
+<p class="welcome__text">Удачи!</p>
+</section>`);
+
+  const welcomeBtn = document.querySelector('.welcome__button');
+
+  welcomeBtn.addEventListener('click', gameGenre);
   };
 
   const resultSuccess = function () {
@@ -63,93 +82,8 @@
   returnBtn.addEventListener('click', welcomeScreen);
   };
 
-  const welcomeScreen = function () {
-    clearScreen();
-    renderElement(`<section class="welcome">
-<div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
-<button class="welcome__button"><span class="visually-hidden">Начать игру</span></button>
-<h2 class="welcome__rules-title">Правила игры</h2>
-<p class="welcome__text">Правила просты:</p>
-<ul class="welcome__rules-list">
-  <li>За 5 минут нужно ответить на все вопросы.</li>
-  <li>Можно допустить 3 ошибки.</li>
-</ul>
-<p class="welcome__text">Удачи!</p>
-</section>`);
-
-  const welcomeBtn = document.querySelector('.welcome__button');
-
-  welcomeBtn.addEventListener('click', gameGenre);
-  };
-
-  welcomeScreen();
-
-
-
-
-
-
-
-
-
-
-  // const screensTemplates = document.querySelectorAll('template');
-  // const screenContainer = document.querySelector('.main');
-  // let fragment = document.createDocumentFragment();
-
-  // // функция показа экранов приложения
-  // const showScreens = function(num) {
-  //   screenContainer.innerHTML= '';
-  //   let element =screensTemplates[num].content.querySelector('section').cloneNode(true);
-  //   fragment.append(element);
-  //   screenContainer.append(fragment)
-  // };
-
-  // let screenNumber = 0;
-  // showScreens(screenNumber);
-
-  // //переключение экранов клавишами стрелок
-  // document.addEventListener('keyup', function(evt) {
-  //   if (evt.keyCode === 37) {
-  //     if (screenNumber > 0) {
-  //       screenNumber = screenNumber - 1;
-  //       showScreens(screenNumber)
-  //     }
-  //   } else {
-  //     if (screenNumber < (screensTemplates.length - 1)) {
-  //       screenNumber = screenNumber + 1;
-  //       showScreens(screenNumber)
-  //     }
-  //   }
-  // });
-
-  // //вставка в разметку "стрелок"
-  // const mainApp = document.querySelector('.app');
-  // const arrows = document.createElement('DIV');
-  // arrows.classList.add('arrows__wrap');
-  // arrows.innerHTML = `<button class="arrows__btn"><-</button>
-  // <button class="arrows__btn">-></button>`;
-
-  // mainApp.append(arrows);
-
-  // //обработчик для стрелок
-  // const leftArrow = document.querySelector('body > main > div > button:nth-child(1)');
-  // const rightArrow = document.querySelector('body > main > div > button:nth-child(2)');
-
-  // leftArrow.addEventListener('click', function() {
-  //   if (screenNumber > 0) {
-  //     screenNumber = screenNumber - 1;
-  //     showScreens(screenNumber)
-  //   }
-  // });
-
-  // rightArrow.addEventListener('click', function() {
-  //   if (screenNumber < (screensTemplates.length - 1)) {
-  //     screenNumber = screenNumber + 1;
-  //     showScreens(screenNumber)
-  //   }
-  // });
+  return gameGenre;
 
 }());
 
-//# sourceMappingURL=main.js.map
+//# sourceMappingURL=game-genre.js.map
