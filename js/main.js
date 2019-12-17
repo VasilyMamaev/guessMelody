@@ -1,22 +1,12 @@
-
-
 import welcomeScreen from './welcome-screen';
-import gameGenre from './game-genre';
-import gameArtist from './game-artist';
-import resultSuccess from './result-success';
-import failTime from './fail-time';
-import failTries from './fail-tries';
-import {clearScreen} from './util'
+// import gameGenre from './game-genre';
+// import gameArtist from './game-artist';
+// import resultSuccess from './result-success';
+// import failTime from './fail-time';
+// import failTries from './fail-tries';
+// import {clearScreen} from './util'
 
 welcomeScreen();
-
-
-
-
-
-
-
-
 
 
 // const screensTemplates = document.querySelectorAll('template');

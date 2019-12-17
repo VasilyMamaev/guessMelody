@@ -1,7 +1,8 @@
-import {renderElement, clearScreen} from './util';
+/* eslint-disable no-irregular-whitespace */
+import { renderElement, clearScreen } from './util';
 import gameGenre from './game-genre';
 
-const welcomeScreen = function () {
+const welcomeScreen = () => {
   clearScreen();
   renderElement(`<section class="welcome">
 <div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
@@ -15,9 +16,9 @@ const welcomeScreen = function () {
 <p class="welcome__text">Удачи!</p>
 </section>`);
 
-const welcomeBtn = document.querySelector('.welcome__button');
+  const welcomeBtn = document.querySelector('.welcome__button');
 
-welcomeBtn.addEventListener('click', gameGenre);
+  welcomeBtn.addEventListener('click', gameGenre);
 };
 
 export default welcomeScreen;

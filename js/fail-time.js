@@ -1,7 +1,7 @@
-import {renderElement, clearScreen} from './util';
+import { renderElement, clearScreen } from './util';
 import welcomeScreen from './welcome-screen';
 
-const failTime = function() {
+const failTime = () => {
   clearScreen();
   renderElement(`<section class="result">
 <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
@@ -10,9 +10,9 @@ const failTime = function() {
 <button class="result__replay" type="button">Попробовать ещё раз</button>
 </section>`);
 
-const returnBtn = document.querySelector('.result__replay');
+  const returnBtn = document.querySelector('.result__replay');
 
-returnBtn.addEventListener('click', welcomeScreen)
+  returnBtn.addEventListener('click', welcomeScreen);
 };
 
 export default failTime;

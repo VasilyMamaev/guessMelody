@@ -82,7 +82,15 @@
   welcomeBtn.addEventListener('click', gameGenre);
   };
 
+  // import gameGenre from './game-genre';
+  // import gameArtist from './game-artist';
+  // import resultSuccess from './result-success';
+  // import failTime from './fail-time';
+  // import failTries from './fail-tries';
+  // import {clearScreen} from './util'
+
   welcomeScreen();
+
 
 
 
