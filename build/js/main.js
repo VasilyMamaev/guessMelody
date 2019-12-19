@@ -1,71 +1,23 @@
 (function () {
   'use strict';
 
-  const renderElement = (html) => {
-    let fragment = document.createElement('div');
-    fragment.innerHTML = html;
-    document.querySelector('.main').append(fragment);
+  // функция получения элементов из шаблона
+  const createElementFromTemplate = (template) => {
+    const fragment = document.createElement('div');
+    fragment.innerHTML = template;
+    return fragment;
+  };
+  // функция отрисовки шаблона на странице
+  const renderElement = (element) => {
+    const wraper = document.querySelector('.main');
+    wraper.innerHTML = '';
+    wraper.append(element);
   };
 
-  const clearScreen = () => {
-    let screen = document.querySelector('.main');
-    screen.innerHTML = '';
-  };
+  /* eslint-disable no-irregular-whitespace */
 
-  const resultSuccess = function () {
-    clearScreen();
-    renderElement(`<section class="result">
-<div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
-<h2 class="result__title">Вы настоящий меломан!</h2>
-<p class="result__total">За 3 минуты и 25 секунд вы набрали 12 баллов (8 быстрых), совершив 3 ошибки</p>
-<p class="result__text">Вы заняли 2 место из 10. Это лучше чем у 80% игроков</p>
-<button class="result__replay" type="button">Сыграть ещё раз</button>
-</section>`);
 
-  const returnBtn = document.querySelector('.result__replay');
-
-  returnBtn.addEventListener('click', welcomeScreen);
-  };
-
-  const gameArtist = function () {
-    clearScreen();
-    renderElement(`
-<section class="game game--artist"> <header class="game__header"> <a class="game__back" href="#"> <span class="visually-hidden">Сыграть ещё раз</span> <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"> </a><svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780"> <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center" /> </svg><div class="timer__value" xmlns="http://www.w3.org/1999/xhtml"> <span class="timer__mins">05</span> <span class="timer__dots">:</span> <span class="timer__secs">00</span></div><div class="game__mistakes"><div class="wrong"></div><div class="wrong"></div><div class="wrong"></div></div> </header><section class="game__screen"><h2 class="game__title">Кто исполняет эту песню?</h2><div class="game__track"> <button class="track__button track__button--play" type="button"></button> <audio></audio></div><form class="game__artist"><div class="artist"> <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1"> <label class="artist__name" for="answer-1"> <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"> Пелагея </label></div><div class="artist"> <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2"> <label class="artist__name" for="answer-2"> <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"> Краснознаменная дивизия имени моей бабушки </label></div><div class="artist"> <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3"> <label class="artist__name" for="answer-3"> <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея"> Lorde </label></div></form> </section> </section>
-`);
-
-  const answerBtns = document.querySelectorAll('.artist');
-  const returnBtn = document.querySelector('.game__logo');
-
-  answerBtns.forEach(element => {
-    element.addEventListener('click', resultSuccess);
-  });
-  returnBtn.addEventListener('click', welcomeScreen);
-  };
-
-  const gameGenre = function () {
-    clearScreen();
-    renderElement(`<section class="game game--genre"> <header class="game__header"> <a class="game__back" href="#"> <span class="visually-hidden">Сыграть ещё раз</span> <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию"> </a><svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780"> <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/> </svg><div class="timer__value" xmlns="http://www.w3.org/1999/xhtml"> <span class="timer__mins">05</span> <span class="timer__dots">:</span> <span class="timer__secs">00</span></div><div class="game__mistakes"><div class="wrong"></div><div class="wrong"></div><div class="wrong"></div></div> </header><section class="game__screen"><h2 class="game__title">Выберите инди-рок треки</h2><form class="game__tracks"><div class="track"> <button class="track__button track__button--play" type="button"></button><div class="track__status"> <audio></audio></div><div class="game__answer"> <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1"> <label class="game__check" for="answer-1">Отметить</label></div></div><div class="track"> <button class="track__button track__button--play" type="button"></button><div class="track__status"> <audio></audio></div><div class="game__answer"> <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2"> <label class="game__check" for="answer-2">Отметить</label></div></div><div class="track"> <button class="track__button track__button--pause" type="button"></button><div class="track__status"> <audio></audio></div><div class="game__answer"> <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3"> <label class="game__check" for="answer-3">Отметить</label></div></div><div class="track"> <button class="track__button track__button--play" type="button"></button><div class="track__status"> <audio></audio></div><div class="game__answer"> <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4"> <label class="game__check" for="answer-4">Отметить</label></div></div><button class="game__submit button" type="submit">Ответить</button></form> </section> </section>
-  `);
-
-  const answerBtn = document.querySelector('.game__submit');
-  const gameGenreAnswers = document.querySelectorAll('.game__input');
-  const returnBtn = document.querySelector('.game__logo');
-
-  answerBtn.disabled = true;
-
-  gameGenreAnswers.forEach(element => {
-    element.addEventListener('change', function () {
-      answerBtn.disabled = false;
-    });
-  });
-
-  answerBtn.addEventListener('click', gameArtist);
-  returnBtn.addEventListener('click', welcomeScreen);
-  };
-
-  const welcomeScreen = function () {
-    clearScreen();
-    renderElement(`<section class="welcome">
+  const welcomeScreen = createElementFromTemplate(`<section class="welcome">
 <div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
 <button class="welcome__button"><span class="visually-hidden">Начать игру</span></button>
 <h2 class="welcome__rules-title">Правила игры</h2>
@@ -77,86 +29,232 @@
 <p class="welcome__text">Удачи!</p>
 </section>`);
 
-  const welcomeBtn = document.querySelector('.welcome__button');
+  const gameGenre = createElementFromTemplate(`<section class="game game--genre">
+<header class="game__header">
+  <a class="game__back" href="#">
+    <span class="visually-hidden">Сыграть ещё раз</span>
+    <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
+  </a>
 
-  welcomeBtn.addEventListener('click', gameGenre);
+  <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+    <circle class="timer__line" cx="390" cy="390" r="370"
+            style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"/>
+  </svg>
+
+  <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
+    <span class="timer__mins">05</span>
+    <span class="timer__dots">:</span>
+    <span class="timer__secs">00</span>
+  </div>
+
+  <div class="game__mistakes">
+    <div class="wrong"></div>
+    <div class="wrong"></div>
+    <div class="wrong"></div>
+  </div>
+</header>
+
+<section class="game__screen">
+  <h2 class="game__title">Выберите инди-рок треки</h2>
+  <form class="game__tracks">
+    <div class="track">
+      <button class="track__button track__button--play" type="button"></button>
+      <div class="track__status">
+        <audio></audio>
+      </div>
+      <div class="game__answer">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-1">
+        <label class="game__check" for="answer-1">Отметить</label>
+      </div>
+    </div>
+
+    <div class="track">
+      <button class="track__button track__button--play" type="button"></button>
+      <div class="track__status">
+        <audio></audio>
+      </div>
+      <div class="game__answer">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-2">
+        <label class="game__check" for="answer-2">Отметить</label>
+      </div>
+    </div>
+
+    <div class="track">
+      <button class="track__button track__button--pause" type="button"></button>
+      <div class="track__status">
+        <audio></audio>
+      </div>
+      <div class="game__answer">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-3">
+        <label class="game__check" for="answer-3">Отметить</label>
+      </div>
+    </div>
+
+    <div class="track">
+      <button class="track__button track__button--play" type="button"></button>
+      <div class="track__status">
+        <audio></audio>
+      </div>
+      <div class="game__answer">
+        <input class="game__input visually-hidden" type="checkbox" name="answer" value="answer-1" id="answer-4">
+        <label class="game__check" for="answer-4">Отметить</label>
+      </div>
+    </div>
+
+    <button class="game__submit button" type="submit">Ответить</button>
+  </form>
+</section>
+</section>`);
+
+  const gameArtist = createElementFromTemplate(`<section class="game game--artist">
+<header class="game__header">
+  <a class="game__back" href="#">
+    <span class="visually-hidden">Сыграть ещё раз</span>
+    <img class="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию">
+  </a>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="timer" viewBox="0 0 780 780">
+    <circle class="timer__line" cx="390" cy="390" r="370" style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center" />
+  </svg>
+
+  <div class="timer__value" xmlns="http://www.w3.org/1999/xhtml">
+    <span class="timer__mins">05</span>
+    <span class="timer__dots">:</span>
+    <span class="timer__secs">00</span>
+  </div>
+
+  <div class="game__mistakes">
+    <div class="wrong"></div>
+    <div class="wrong"></div>
+    <div class="wrong"></div>
+  </div>
+</header>
+
+<section class="game__screen">
+  <h2 class="game__title">Кто исполняет эту песню?</h2>
+  <div class="game__track">
+    <button class="track__button track__button--play" type="button"></button>
+    <audio></audio>
+  </div>
+
+  <form class="game__artist">
+    <div class="artist">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-1" id="answer-1">
+      <label class="artist__name" for="answer-1">
+        <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
+        Пелагея
+      </label>
+    </div>
+
+    <div class="artist">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-2" id="answer-2">
+      <label class="artist__name" for="answer-2">
+        <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
+        Краснознаменная дивизия имени моей бабушки
+      </label>
+    </div>
+
+    <div class="artist">
+      <input class="artist__input visually-hidden" type="radio" name="answer" value="artist-3" id="answer-3">
+      <label class="artist__name" for="answer-3">
+        <img class="artist__picture" src="http://placehold.it/134x134" alt="Пелагея">
+        Lorde
+      </label>
+    </div>
+  </form>
+</section>
+</section>`);
+
+  /* eslint-disable no-irregular-whitespace */
+
+  const resultSuccess = createElementFromTemplate(`<section class="result">
+<div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
+<h2 class="result__title">Вы настоящий меломан!</h2>
+<p class="result__total">За 3 минуты и 25 секунд вы набрали 12 баллов (8 быстрых), совершив 3 ошибки</p>
+<p class="result__text">Вы заняли 2 место из 10. Это лучше чем у 80% игроков</p>
+<button class="result__replay" type="button">Сыграть ещё раз</button>
+</section>`);
+
+  /* eslint-disable import/prefer-default-export */
+
+
+  //
+  const answerChecker = () => {
+    const rightAnswers = document.querySelectorAll('.game__input:checked');
+    const answeBtn = document.querySelector('.game__submit');
+    if (rightAnswers.length > 0) {
+      answeBtn.disabled = false;
+    } else {
+      answeBtn.disabled = true;
+    }
   };
 
-  // import gameGenre from './game-genre';
-  // import gameArtist from './game-artist';
-  // import resultSuccess from './result-success';
-  // import failTime from './fail-time';
-  // import failTries from './fail-tries';
-  // import {clearScreen} from './util'
+  //  логика экрана welcomeScreen
+  const welcomeScreenHandler = () => {
+    const welcomeBtn = document.querySelector('.welcome__button');
 
-  welcomeScreen();
-
-
-
+    welcomeBtn.addEventListener('click', () => {
+      renderElement(gameGenre);
+      gameGenreHandler();
+    });
+  };
 
 
+  //  логика экрана gameGenre
+  const gameGenreHandler = () => {
+    const form = document.querySelector('.game__tracks');
+    const answerBtn = document.querySelector('.game__submit');
+    const returnBtn = document.querySelector('.game__logo');
+
+    answerBtn.disabled = true;
+
+    form.addEventListener('change', () => {
+      answerChecker();
+    });
+
+    answerBtn.addEventListener('click', () => {
+      renderElement(gameArtist);
+      gameArtistHandler();
+    });
+    returnBtn.addEventListener('click', () => {
+      renderElement(welcomeScreen);
+      welcomeScreenHandler();
+    });
+  };
 
 
+  // логика экрана gameArtist
+  const gameArtistHandler = () => {
+    const answerBtns = document.querySelectorAll('.artist');
+    const returnBtn = document.querySelector('.game__logo');
+
+    answerBtns.forEach((element) => {
+      element.addEventListener('click', () => {
+        renderElement(resultSuccess);
+        resultSuccessHandler();
+      });
+    });
+    returnBtn.addEventListener('click', () => {
+      renderElement(welcomeScreen);
+      welcomeScreenHandler();
+    });
+  };
 
 
+  // логика экрана resultSuccess
+  const resultSuccessHandler = () => {
+    const returnBtn = document.querySelector('.result__replay');
+
+    returnBtn.addEventListener('click', () => {
+      renderElement(welcomeScreen);
+      welcomeScreenHandler();
+    });
+  };
 
 
-  // const screensTemplates = document.querySelectorAll('template');
-  // const screenContainer = document.querySelector('.main');
-  // let fragment = document.createDocumentFragment();
-
-  // // функция показа экранов приложения
-  // const showScreens = function(num) {
-  //   screenContainer.innerHTML= '';
-  //   let element =screensTemplates[num].content.querySelector('section').cloneNode(true);
-  //   fragment.append(element);
-  //   screenContainer.append(fragment)
-  // };
-
-  // let screenNumber = 0;
-  // showScreens(screenNumber);
-
-  // //переключение экранов клавишами стрелок
-  // document.addEventListener('keyup', function(evt) {
-  //   if (evt.keyCode === 37) {
-  //     if (screenNumber > 0) {
-  //       screenNumber = screenNumber - 1;
-  //       showScreens(screenNumber)
-  //     }
-  //   } else {
-  //     if (screenNumber < (screensTemplates.length - 1)) {
-  //       screenNumber = screenNumber + 1;
-  //       showScreens(screenNumber)
-  //     }
-  //   }
-  // });
-
-  // //вставка в разметку "стрелок"
-  // const mainApp = document.querySelector('.app');
-  // const arrows = document.createElement('DIV');
-  // arrows.classList.add('arrows__wrap');
-  // arrows.innerHTML = `<button class="arrows__btn"><-</button>
-  // <button class="arrows__btn">-></button>`;
-
-  // mainApp.append(arrows);
-
-  // //обработчик для стрелок
-  // const leftArrow = document.querySelector('body > main > div > button:nth-child(1)');
-  // const rightArrow = document.querySelector('body > main > div > button:nth-child(2)');
-
-  // leftArrow.addEventListener('click', function() {
-  //   if (screenNumber > 0) {
-  //     screenNumber = screenNumber - 1;
-  //     showScreens(screenNumber)
-  //   }
-  // });
-
-  // rightArrow.addEventListener('click', function() {
-  //   if (screenNumber < (screensTemplates.length - 1)) {
-  //     screenNumber = screenNumber + 1;
-  //     showScreens(screenNumber)
-  //   }
-  // });
+  // вызов начального экрана
+  renderElement(welcomeScreen);
+  welcomeScreenHandler();
 
 }());
 

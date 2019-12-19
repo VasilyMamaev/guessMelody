@@ -1,10 +1,7 @@
 /* eslint-disable no-irregular-whitespace */
-import { renderElement, clearScreen } from './util';
-import welcomeScreen from './welcome-screen';
+import { createElementFromTemplate } from './util';
 
-const resultSuccess = () => {
-  clearScreen();
-  renderElement(`<section class="result">
+const resultSuccess = createElementFromTemplate(`<section class="result">
 <div class="result__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
 <h2 class="result__title">Вы настоящий меломан!</h2>
 <p class="result__total">За 3 минуты и 25 секунд вы набрали 12 баллов (8 быстрых), совершив 3 ошибки</p>
@@ -12,9 +9,5 @@ const resultSuccess = () => {
 <button class="result__replay" type="button">Сыграть ещё раз</button>
 </section>`);
 
-  const returnBtn = document.querySelector('.result__replay');
-
-  returnBtn.addEventListener('click', welcomeScreen);
-};
 
 export default resultSuccess;

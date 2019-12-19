@@ -1,18 +1,7 @@
-var util = (function (exports) {
+(function (chai) {
   'use strict';
 
   // функция получения элементов из шаблона
-  const createElementFromTemplate = (template) => {
-    const fragment = document.createElement('div');
-    fragment.innerHTML = template;
-    return fragment;
-  };
-  // функция отрисовки шаблона на странице
-  const renderElement = (element) => {
-    const wraper = document.querySelector('.main');
-    wraper.innerHTML = '';
-    wraper.append(element);
-  };
 
 
   // Функция подсчёта набранных баллов игрока
@@ -68,13 +57,51 @@ var util = (function (exports) {
     return result;
   };
 
-  exports.createElementFromTemplate = createElementFromTemplate;
-  exports.playerScoresCounter = playerScoresCounter;
-  exports.renderElement = renderElement;
-  exports.showPlayerResult = showPlayerResult;
+  describe('playerScoresCounter', () => {
+    it('игрок ответил меньше, чем на 10 вопросов должно вернуть -1', () => {
+      const arr = [{ answ: 'r', time: 32 }, { answ: 'f', time: 12 }, { answ: 'f', time: 10 }];
+      chai.assert(playerScoresCounter(arr) === -1);
+    });
 
-  return exports;
+    it('ответил медленно на все 10 вопросов правильно получил 10 баллов', () => {
+      const arr = [{ answ: 'r', time: 32 }, { answ: 'r', time: 120 }, { answ: 'r', time: 130 }, { answ: 'r', time: 30 }, { answ: 'r', time: 30 }, { answ: 'r', time: 30 }, { answ: 'r', time: 30 }, { answ: 'r', time: 100 }, { answ: 'r', time: 100 }, { answ: 'r', time: 40 }];
+      chai.assert(playerScoresCounter(arr) === 10);
+    });
+  });
 
-}({}));
+  describe('showPlayerResult', () => {
+    it('упорядочивает получаемый массив других игроков', () => {
+      const arr = [9, 2, 4, -7, 1];
+      showPlayerResult(arr, 1);
+      console.log(arr);
+      chai.assert(1);
+    });
 
-//# sourceMappingURL=util.js.map
+    it('функция возвращает строку результата', () => {
+      const arr = [10, 2, 4, -7, 1];
+      const obj = { scores: 10, lifes: 1, timeLeft: 10 };
+      const jojo = showPlayerResult(arr, obj);
+      console.log(jojo);
+      chai.assert(showPlayerResult(arr, obj));
+    });
+
+    it('результат если жизни кончились', () => {
+      const arr = [10, 2, 4, -7, 1];
+      const obj = { scores: 1, lifes: -1, timeLeft: 10 };
+      const jojo = showPlayerResult(arr, obj);
+      console.log(jojo);
+      chai.assert(showPlayerResult(arr, obj));
+    });
+
+    it('результат если кончилось время', () => {
+      const arr = [10, 2, 4, -7, 1];
+      const obj = { scores: 1, lifes: 1, timeLeft: 0 };
+      const jojo = showPlayerResult(arr, obj);
+      console.log(jojo);
+      chai.assert(showPlayerResult(arr, obj));
+    });
+  });
+
+}(chai));
+
+//# sourceMappingURL=util.test.js.map

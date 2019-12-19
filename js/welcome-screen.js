@@ -1,10 +1,8 @@
 /* eslint-disable no-irregular-whitespace */
-import { renderElement, clearScreen } from './util';
-import gameGenre from './game-genre';
+import { createElementFromTemplate } from './util';
 
-const welcomeScreen = () => {
-  clearScreen();
-  renderElement(`<section class="welcome">
+
+const welcomeScreen = createElementFromTemplate(`<section class="welcome">
 <div class="welcome__logo"><img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83"></div>
 <button class="welcome__button"><span class="visually-hidden">Начать игру</span></button>
 <h2 class="welcome__rules-title">Правила игры</h2>
@@ -16,9 +14,5 @@ const welcomeScreen = () => {
 <p class="welcome__text">Удачи!</p>
 </section>`);
 
-  const welcomeBtn = document.querySelector('.welcome__button');
-
-  welcomeBtn.addEventListener('click', gameGenre);
-};
 
 export default welcomeScreen;
