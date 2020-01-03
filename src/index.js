@@ -4,7 +4,7 @@ import App from "./components/app/app.jsx";
 
 const inint = () => {
   ReactDOM.render(
-      <App/>,
+      <App />,
       document.getElementById(`root`)
   );
 };
